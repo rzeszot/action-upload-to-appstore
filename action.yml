@@ -19,7 +19,19 @@ runs:
     - shell: sh
       run: |
         mkdir -p "$HOME/.appstoreconnect/private_keys"
-        echo "${{ inputs.appstore_key_content }}" > "$HOME/.appstoreconnect/private_keys/AuthKey_${{ inputs.appstore_key_id }}.p8"
-      
-        xcrun altool --upload-app --file "${{ inputs.ipa_path }}" --apiKey "${{ inputs.appstore_key_id }}" --apiIssuer "${{ inputs.appstore_issuer }}"
+        echo "${{ inputs.appstore_key_content }}" > "$HOME/.appstoreconnect/private_keys/AuthKey_${{ inputs.appstore_key_id }}.p8"  
+    - shell: sh
+      run: |
+        xcrun altool \
+          --validate-app \
+          --file "${{ inputs.ipa_path }}" \
+          --apiKey "${{ inputs.appstore_key_id }}" \
+          --apiIssuer "${{ inputs.appstore_issuer }}"    
+    - shell: sh
+      run: |
+        xcrun altool \
+          --upload-app \
+          --file "${{ inputs.ipa_path }}" \
+          --apiKey "${{ inputs.appstore_key_id }}" \
+          --apiIssuer "${{ inputs.appstore_issuer }}"
         
