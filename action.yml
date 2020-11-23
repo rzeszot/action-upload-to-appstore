@@ -3,12 +3,16 @@ description: 'TODO'
 inputs:
   ipa_path:
     description: 'TODO'
+    required: true
   appstore_issuer:
     description: 'TODO'
+    required: true
   appstore_key_id:
     description: 'TODO'
+    required: true
   appstore_key_content:
     description: 'TODO'
+    required: true
 runs:
   using: 'composite'
   steps:
