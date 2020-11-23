@@ -23,13 +23,6 @@ runs:
     - shell: sh
       run: |
         xcrun altool \
-          --validate-app \
-          --file "${{ inputs.ipa_path }}" \
-          --apiKey "${{ inputs.appstore_key_id }}" \
-          --apiIssuer "${{ inputs.appstore_issuer }}"    
-    - shell: sh
-      run: |
-        xcrun altool \
           --upload-app \
           --file "${{ inputs.ipa_path }}" \
           --apiKey "${{ inputs.appstore_key_id }}" \
